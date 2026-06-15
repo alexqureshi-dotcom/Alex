@@ -15,8 +15,8 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ENTER_YOUR_PASSWORD
-      MYSQL_DATABASE: YOUR_DATABASE
+      MYSQL_ROOT_PASSWORD: Alphabet
+      MYSQL_DATABASE: Alex_DB
     ports:
       - "3306:3306"
 
@@ -28,6 +28,6 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: ENTER_YOUR_PASSWORD
+      MYSQL_ROOT_PASSWORD: Alphabet
     volumes:
       - ./phpmyadmin-config.php:/etc/phpmyadmin/config.user.inc.php

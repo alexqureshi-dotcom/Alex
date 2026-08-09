@@ -7,15 +7,10 @@ $page_title = "Log a loan | Library Rental System";
 // If save_loan.php redirected back here with errors, read them once.
 $errors = $_SESSION['borrow_errors'] ?? [];
 $old    = $_SESSION['borrow_old'] ?? [];
-$today    = date('Y-m-d H:i');
-// Search to add 12 hours
 
-$now = date('Y-m-d H:i:s');
-$now_plus_minute = date('Y-m-d H:i', strtotime($now . ' +1 minute'));
-
-// gets the correct value but picker does not work
-// $nz_time = new DateTime('now', new DateTimeZone('Pacific/Auckland'));
-// $now = $nz_time->format('Y-m-d\TH:i:s');
+//Get now but in NZ time
+$nz_time = new DateTime('now', new DateTimeZone('Pacific/Auckland'));
+$now = $nz_time->format('Y-m-d\TH:i');
 
 unset($_SESSION['borrow_errors'], $_SESSION['borrow_old']);
 
@@ -63,7 +58,7 @@ include('includes/nav.php');
                 <div class="mb-3">
                     <label for="borrowed_date" class="form-label">Borrowed Date</label>
                     <input type="datetime-local" class="form-control" id="borrowed_date" name="borrowed_date"
-                           value="<?= htmlspecialchars($old['borrowed_date'] ?? $today) ?>">
+                           value="<?= htmlspecialchars($old['borrowed_date'] ?? $now) ?>">
                 </div>
                 <div class="mb-3">
                     <label for="due_back" class="form-label">Due back</label>

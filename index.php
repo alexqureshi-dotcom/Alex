@@ -15,6 +15,42 @@ include('includes/nav.php');
         </div>
     </div>
 </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+
+            <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner" style="height: 400px;">
+                <div class="carousel-item active">
+                <img src="/images/Library1a.webp" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="/images/Library2a.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="/images/Library3.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+
 <!-- Start of cards -->
 <div class="container pt-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">

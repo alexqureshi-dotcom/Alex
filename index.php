@@ -28,13 +28,13 @@ include('includes/nav.php');
             </div>
             <div class="carousel-inner" style="height: 400px;">
                 <div class="carousel-item active">
-                <img src="/images/Library1a.webp" class="d-block w-100" alt="...">
+                <img src="/images/Library1a.webp" class="d-block w-100" alt="Library Books">
                 </div>
                 <div class="carousel-item">
-                <img src="/images/Library2a.png" class="d-block w-100" alt="...">
+                <img src="/images/Library2a.png" class="d-block w-100" alt="Library Devices">
                 </div>
                 <div class="carousel-item">
-                <img src="/images/Library3.jpg" class="d-block w-100" alt="...">
+                <img src="/images/Library3.jpg" class="d-block w-100" alt="Library Optical Discs">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

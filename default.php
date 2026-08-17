@@ -2,7 +2,6 @@
 $page_title = "Home";
 include('includes/header.php');
 include('includes/nav.php');
-include('includes/carousel.php');
 
 ?>
 

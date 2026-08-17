@@ -15,28 +15,81 @@ $stmt = $pdo->query(
 $loans = $stmt->fetchAll();
 $today = date('Y-m-d');
 
+
+$pdo->exec("SET time_zone = 'Pacific/Auckland'");
+
+$stmt_rented = $pdo->query(
+    "SELECT COUNT(*) AS rentedcount
+     FROM rentals
+     WHERE returned_date IS NULL
+       AND due_back > CURRENT_DATE()"
+);
+
+$rented_count = $stmt_rented->fetchColumn();
+
+
+$stmt_overdue = $pdo->query(
+    "SELECT COUNT(*) AS overduecount
+     FROM rentals
+     WHERE returned_date IS NULL
+       AND due_back < CURRENT_DATE()"
+);
+
+$overdue_count = $stmt_overdue->fetchColumn();
+
+$stmt_returned = $pdo->query(
+    "SELECT COUNT(*) AS returnedcount
+     FROM rentals
+     WHERE returned_date IS NOT NULL"
+);
+
+$returned_count = $stmt_returned->fetchColumn();
+
 include('includes/header.php');
 include('includes/nav.php');
 ?>
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <h1 class="pt-5 pb-4">Manage loans</h1>
+        </div>
+        <div class="col-sm-2 pt-5 pb-4">
+            <a href="borrow.php"><button class="btn btn-danger btn-lg m-2">Log a new loan</button></a>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+
+<div class="row mb-3">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 d-flex justify-content-center gap-2">
+        <span class="badge text-bg-success fs-4">Rented: <?= $rented_count ?></span>
+        <span class="badge text-bg-danger fs-4">Overdue: <?= $overdue_count ?></span>
+        <span class="badge text-bg-light border text-dark fs-4">Returned: <?= $returned_count ?></span>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
 
             <?php if (isset($_GET['logged'])): ?><div class="alert alert-success">Loan logged.</div><?php endif; ?>
             <?php if (isset($_GET['returned'])): ?><div class="alert alert-success">Marked as returned.</div><?php endif; ?>
             <?php if (isset($_GET['deleted'])): ?><div class="alert alert-success">Entry deleted.</div><?php endif; ?>
             <div class="pb-4">
                 <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search...">
-                <!--
                 <select class="form-select mt-2" id="columnSelect" onchange="myFunction()">
                     <option value="0">Item</option>
-                    <option value="1">Borrower</option>
-                    <option value="2">Due back</option>
-                    <option value="3">Status</option>
+                    <option value="1">Category</option>
+                    <option value="2">Borrower</option>
+                    <option value="3">Due back</option>
+                    <option value="4">Status</option>
+                    <option value="5">Logged by</option>
                 </select>
-                -->
             </div>
             <table class="table table-hover" id="myTable">
                 <thead>

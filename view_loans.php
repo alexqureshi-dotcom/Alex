@@ -28,8 +28,8 @@ include('includes/nav.php');
                     <thead>
                         <tr>
                             <th scope="col">Item</th>
-                            <th scope="col">Borrower</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Borrower</th>
                             <th scope="col">Due back</th>
                             <th scope="col">Status</th>
                         </tr>

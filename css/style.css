@@ -1,0 +1,20 @@
+/* Navigation styling — carried over from the class template */
+.navbar a {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    color: rgb(249, 245, 245);
+}
+
+
+.navbar a:hover {
+    color: rgb(110, 164, 247);
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.site-footer {
+    background-color: #ffffff;
+    color: rgb(231, 226, 226);
+}

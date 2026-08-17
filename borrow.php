@@ -2,7 +2,7 @@
 session_start();
 require('includes/auth_check.php');
 
-$page_title = "Log a loan | Library Rental System";
+$page_title = "Log a rental | Library Rental System";
 
 // If save_loan.php redirected back here with errors, read them once.
 $errors = $_SESSION['borrow_errors'] ?? [];

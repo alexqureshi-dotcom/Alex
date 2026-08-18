@@ -3,6 +3,13 @@ session_start();
 require('includes/auth_check.php');
 require('includes/conn_1dt.php');
 
+
+$page_title = "Log a rental | Library Rental System";
+
+// If save_loan.php redirected back here with errors, read them once.
+$errors = $_SESSION['borrow_errors'] ?? [];
+$old    = $_SESSION['borrow_old'] ?? [];
+
 // Join to monitors so we can show who logged each loan.
 $stmt = $pdo->query(
     "SELECT category_name
@@ -10,13 +17,12 @@ $stmt = $pdo->query(
 );
 $categories = $stmt->fetchAll();
 
+$stmt = $pdo->query(
+    "SELECT Payment_type
+     FROM payment_types"
+);
+$payment_types = $stmt->fetchAll();
 
-
-$page_title = "Log a rental | Library Rental System";
-
-// If save_loan.php redirected back here with errors, read them once.
-$errors = $_SESSION['borrow_errors'] ?? [];
-$old    = $_SESSION['borrow_old'] ?? [];
 
 //Get now but in NZ time
 $nz_time = new DateTime('now', new DateTimeZone('Pacific/Auckland'));
@@ -52,10 +58,6 @@ include('includes/nav.php');
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <!--
-                    <input type="text" class="form-control" id="category" name="category"
-                           value="<?= htmlspecialchars($old['category'] ?? '') ?>">
-                    -->
                     <select class="form-select" id="category" name="category">
                         <?php foreach ($categories as $category): ?>
                             <?php $category_name = htmlspecialchars($category['category_name']); ?>
@@ -85,8 +87,12 @@ include('includes/nav.php');
                 </div>
                 <div class="mb-3">
                     <label for="payment_type" class="form-label">Payment Type</label>
-                    <input type="text" class="form-control" id="payment_type" name="payment_type"
-                           value="<?= htmlspecialchars($old['payment_type'] ?? '') ?>">
+                    <select class="form-select" id="payment_type" name="payment_type">
+                        <?php foreach ($payment_types as $payment_type): ?>
+                            <?php $payment_type = htmlspecialchars($payment_type['Payment_type']); ?>
+                            <option value="<?=$payment_type?>" <?= ($old['payment_type'] ?? '') == $payment_type ? 'selected' : '' ?>><?=$payment_type?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="cost" class="form-label">Cost</label>

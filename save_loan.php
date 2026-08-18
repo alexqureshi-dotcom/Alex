@@ -19,10 +19,11 @@ $cost      = $_POST['cost'] ?? '';
 $today    = date('Y-m-d');
 // $now = date('Y-m-d H:i:s');
 // $now_plus_minute = date('Y-m-d H:i', strtotime($now . ' +1 minute'));
-$nz_time = new DateTime('now', new DateTimeZone('Pacific/Auckland'));
-$now = $nz_time->format('Y-m-d\TH:i:s');
+$now = new DateTime('now', new DateTimeZone('Pacific/Auckland'));
 
-$borrowed_date      = $_POST['borrowed_date'] ?? '';
+
+$borrowed_date_txt      = $_POST['borrowed_date'] ?? '';
+
 $errors   = [];
 
 if ($item === '') {
@@ -43,10 +44,20 @@ if ($cost === '') {
 if ($borrower_email === '') {
     $errors[] = 'Please enter an email.';
 }
-if ($borrowed_date === '' || $borrowed_date > $now) { // does not work as we want
-//if ($borrowed_date === '' ) {
-    $errors[] = 'Please enter a date. Ensure the date/time is either the current date/time or prior';
+
+//Check if its empty
+if ($borrowed_date_txt === '' ) { 
+    $errors[] = 'Please enter the borrowed date. ';
 }
+else { // else check its prior to now
+    
+    $nzTimeZone = new DateTimeZone('Pacific/Auckland');
+    $borrowed_date = new DateTime($borrowed_date_txt, $nzTimeZone);
+    if ($borrowed_date > $now){
+        $errors[] = 'Ensure the date/time is either the current date/time or prior';
+    }
+}
+
 if ($due === '' || $due < $today) {
     $errors[] = 'Due back date must be today or later.';
 }
@@ -60,7 +71,7 @@ if ($errors) {
         'category' => $category, 
         'payment_type' => $payment_type, 
         'notes' => $notes,
-        'borrowed_date' => $borrowed_date,
+        'borrowed_date' => $borrowed_date_txt,
         'borrower_email' => $borrower_email,
         'cost' => $cost];
     header('Location: borrow.php');

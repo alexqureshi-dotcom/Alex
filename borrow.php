@@ -42,8 +42,15 @@ include('includes/nav.php');
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
+                    <!--
                     <input type="text" class="form-control" id="category" name="category"
                            value="<?= htmlspecialchars($old['category'] ?? '') ?>">
+                    -->
+                    <select class="form-select" id="category" name="category">
+                        <option value="Books" <?= ($old['category'] ?? '') == 'Books' ? 'selected' : '' ?>>Books</option>
+                        <option value="Optical Discs" <?= ($old['category'] ?? '') == 'Optical Discs' ? 'selected' : '' ?>>Optical Discs</option>
+                        <option value="Device Usage" <?= ($old['category'] ?? '') == 'Device Usage' ? 'selected' : '' ?>>Device Usage</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="borrower_name" class="form-label">Borrower Name</label>

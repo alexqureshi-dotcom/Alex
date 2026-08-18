@@ -12,11 +12,12 @@ $item     = trim($_POST['item_name'] ?? '');
 $borrower = trim($_POST['borrower_name'] ?? '');
 $borrower_email = trim($_POST['borrower_email'] ?? '');
 $notes = trim($_POST['notes'] ?? '');
-$due      = $_POST['due_back'] ?? '';
+$due_txt      = $_POST['due_back'] ?? '';
 $category      = $_POST['category'] ?? '';
 $payment_type      = $_POST['payment_type'] ?? '';
 $cost      = $_POST['cost'] ?? '';
-$today    = date('Y-m-d');
+#$today    = date('Y-m-d');
+$today = new DateTime('today', new DateTimeZone('Pacific/Auckland'));
 // $now = date('Y-m-d H:i:s');
 // $now_plus_minute = date('Y-m-d H:i', strtotime($now . ' +1 minute'));
 $now = new DateTime('now', new DateTimeZone('Pacific/Auckland'));
@@ -58,8 +59,15 @@ else { // else check its prior to now
     }
 }
 
-if ($due === '' || $due < $today) {
+if ($due_txt === '') {
     $errors[] = 'Due back date must be today or later.';
+}
+else {
+    $nzTimeZone = new DateTimeZone('Pacific/Auckland');
+    $due_date = new DateTime($due_txt, $nzTimeZone);
+    if ($due_date < $today){
+        $errors[] = 'Due back date must be today or later.';
+    }
 }
 
 if ($errors) {
@@ -67,7 +75,7 @@ if ($errors) {
     $_SESSION['borrow_old']    = [
         'item_name' => $item, 
         'borrower_name' => $borrower, 
-        'due_back' => $due, 
+        'due_back' => $due_txt, 
         'category' => $category, 
         'payment_type' => $payment_type, 
         'notes' => $notes,
@@ -86,8 +94,8 @@ $stmt->execute([
     ':item'      => $item,
     ':borrower'  => $borrower,
     ':category'  => $category,
-    ':borrowed_date'  => $borrowed_date,
-    ':due'       => $due,
+    ':borrowed_date'  => $borrowed_date_txt,
+    ':due'       => $due_txt,
     ':payment_type'       => $payment_type,
     ':cost'       => $cost,
     ':logged_by' => $_SESSION['id'],

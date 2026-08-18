@@ -1,6 +1,16 @@
 <?php
 session_start();
 require('includes/auth_check.php');
+require('includes/conn_1dt.php');
+
+// Join to monitors so we can show who logged each loan.
+$stmt = $pdo->query(
+    "SELECT category_name
+     FROM categories"
+);
+$categories = $stmt->fetchAll();
+
+
 
 $page_title = "Log a rental | Library Rental System";
 
@@ -47,9 +57,10 @@ include('includes/nav.php');
                            value="<?= htmlspecialchars($old['category'] ?? '') ?>">
                     -->
                     <select class="form-select" id="category" name="category">
-                        <option value="Books" <?= ($old['category'] ?? '') == 'Books' ? 'selected' : '' ?>>Books</option>
-                        <option value="Optical Discs" <?= ($old['category'] ?? '') == 'Optical Discs' ? 'selected' : '' ?>>Optical Discs</option>
-                        <option value="Device Usage" <?= ($old['category'] ?? '') == 'Device Usage' ? 'selected' : '' ?>>Device Usage</option>
+                        <?php foreach ($categories as $category): ?>
+                            <?php $category_name = htmlspecialchars($category['category_name']); ?>
+                            <option value="<?=$category_name?>" <?= ($old['category'] ?? '') == $category_name ? 'selected' : '' ?>><?=$category_name?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="mb-3">

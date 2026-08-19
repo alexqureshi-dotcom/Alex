@@ -13,7 +13,8 @@ $stmt = $pdo->query(
      ORDER BY (returned_date IS NULL) DESC, due_back ASC"
 );
 $loans = $stmt->fetchAll();
-$today = date('Y-m-d');
+$today = (new DateTime('today', new DateTimeZone('Pacific/Auckland')))->format('Y-m-d');
+
 
 
 $pdo->exec("SET time_zone = 'Pacific/Auckland'");

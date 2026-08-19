@@ -7,7 +7,8 @@ require('includes/conn_1dt.php');
 // returning a loan requires being signed in.
 $stmt = $pdo->query("SELECT * FROM rentals WHERE returned_date IS NULL ORDER BY due_back ASC");
 $rentals = $stmt->fetchAll();
-$today = date('Y-m-d');
+$today = (new DateTime('today', new DateTimeZone('Pacific/Auckland')))->format('Y-m-d');
+
 
 include('includes/header.php');
 include('includes/nav.php');

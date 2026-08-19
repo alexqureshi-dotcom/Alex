@@ -18,7 +18,7 @@ $stmt = $pdo->query(
 $categories = $stmt->fetchAll();
 
 $stmt = $pdo->query(
-    "SELECT Payment_type
+    "SELECT payment_type
      FROM payment_types"
 );
 $payment_types = $stmt->fetchAll();
@@ -89,7 +89,7 @@ include('includes/nav.php');
                     <label for="payment_type" class="form-label">Payment Type</label>
                     <select class="form-select" id="payment_type" name="payment_type">
                         <?php foreach ($payment_types as $payment_type): ?>
-                            <?php $payment_type = htmlspecialchars($payment_type['Payment_type']); ?>
+                            <?php $payment_type = htmlspecialchars($payment_type['payment_type']); ?>
                             <option value="<?=$payment_type?>" <?= ($old['payment_type'] ?? '') == $payment_type ? 'selected' : '' ?>><?=$payment_type?></option>
                         <?php endforeach; ?>
                     </select>

@@ -19,8 +19,8 @@ include('includes/nav.php');
         <div class="col-sm-3"></div>
         <div class="col-sm-6 text-center">
             <h2 class="pb-4">Welcome back, <?php echo htmlspecialchars($_SESSION['firstname']); ?></h2>
-            <a href="borrow.php"><button class="btn btn-danger btn-lg m-2">Log a new loan</button></a>
-            <a href="manage_loans.php"><button class="btn btn-primary btn-lg m-2">Manage loans</button></a>
+            <a href="borrow.php"><button class="btn btn-danger btn-lg m-2">Log a new rental</button></a>
+            <a href="manage_loans.php"><button class="btn btn-primary btn-lg m-2">Manage rentals</button></a>
         </div>
         <div class="col-sm-3"></div>
     </div>

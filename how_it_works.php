@@ -28,12 +28,12 @@ include('includes/nav.php');
         </p>
         <h3 class="pt-4">What it does</h3>
         <ul>
-            <li>Lets a signed-in monitor log a loan — item, borrower, and due-back date</li>
+            <li>Lets a signed-in monitor log a rental — item, borrower, and due-back date</li>
             <li>Shows anyone, monitor or staff, a live public list of what's currently out</li>
             <li>Flags anything overdue</li>
             <li>Lets a monitor mark gear as returned, or correct a mistaken entry</li>
             <li>Shows images of the library</li>
-            <li>Allows guests to browse the current loans</li>
+            <li>Allows guests to browse the current rentalss</li>
         </ul>
     </div>
 </div>

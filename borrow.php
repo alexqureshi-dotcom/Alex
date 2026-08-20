@@ -38,7 +38,7 @@ include('includes/nav.php');
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            <h2 class="pt-5">Log a loan</h2>
+            <h2 class="pt-5">Log a rental</h2>
 
             <?php if ($errors): ?>
             <div class="alert alert-danger" role="alert">

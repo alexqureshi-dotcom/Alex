@@ -15,7 +15,7 @@
                     <a class="nav-link" href="how_it_works.php">How it works</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="view_loans.php">Current loans</a>
+                    <a class="nav-link" href="view_loans.php">Current rentals</a>
                 </li>
                 <?php if (isset($_SESSION['id'])): ?>
                 <li class="nav-item pe-3">

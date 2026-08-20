@@ -55,10 +55,10 @@ include('includes/nav.php');
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-8">
-            <h1 class="pt-5 pb-4">Manage loans</h1>
+            <h1 class="pt-5 pb-4">Manage rentals</h1>
         </div>
         <div class="col-sm-2 pt-5 pb-4">
-            <a href="borrow.php"><button class="btn btn-danger btn-lg m-2">Log a new loan</button></a>
+            <a href="borrow.php"><button class="btn btn-danger btn-lg m-2">Log a new rental</button></a>
         </div>
         <div class="col-sm-1"></div>
     </div>
@@ -78,7 +78,7 @@ include('includes/nav.php');
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
 
-            <?php if (isset($_GET['logged'])): ?><div class="alert alert-success">Loan logged.</div><?php endif; ?>
+            <?php if (isset($_GET['logged'])): ?><div class="alert alert-success">Rental logged.</div><?php endif; ?>
             <?php if (isset($_GET['returned'])): ?><div class="alert alert-success">Marked as returned.</div><?php endif; ?>
             <?php if (isset($_GET['deleted'])): ?><div class="alert alert-success">Entry deleted.</div><?php endif; ?>
             <div class="pb-4">
